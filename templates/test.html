@@ -1,23 +1,43 @@
 <html>
 
     <head>
-        <title>Test</title>
+	
+	<script type="text/javascript">
+  
+    function checkForm(){
+        var nameBox;
+        for (i = 1; i <= 16; i++) {
+            var  nameBox ="d"+i;
+            var x = document.getElementsByName(nameBox);
+	        if(!x[0].checked && !x[1].checked && !x[2].checked && !x[3].checked && !x[4].checked) {
+                alert("Hai dimenticato di rispondere a qualche domanda");
+                return false;
+            }}
+            return true;
+            }
+        </script>
+
+ <title>Test</title>
     </head>
 
     <body>
         {{domanda}}
         
-        <form action='/results' method="post">
+        <form name="myForm" action='/results' method="post" onsubmit="return checkForm()">
             <ul>
+			           
                     {% for d in domande %}
                         {{loop.index|string + ')'}} {{d}} <br>
+						
                         <input type="radio" name="d{{loop.index}}" value="1"> 
                         <input type="radio" name="d{{loop.index}}" value="2"> 
                         <input type="radio" name="d{{loop.index}}" value="3">
                         <input type="radio" name="d{{loop.index}}" value="4"> 
                         <input type="radio" name="d{{loop.index}}" value="5"> <br>
+					
                     {% endfor %}
-            </ul>
+            </ul> 
+
             <input type="submit" name="next">                  
         </form>
     </body>

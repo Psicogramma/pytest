@@ -10,6 +10,10 @@ class Test():
     incrementi = {5: 1.5, 4: 0.75, 3: 0, 2: -0.75, 1: -1.5}
     types = {'Ti_Ne': 'INTP', 'Ne_Ti': 'ENTP', 'Ni_Te': 'INTJ', 'Te_Ni': 'ENTJ', 'Fi_Ne': 'INFP', 'Ne_Fi': 'ENFP', 'Ni_Fe': 'INFJ', 'Fe_Ni': 'ENFJ',
              'Ti_Se': 'ISTP', 'Se_Ti': 'ESTP', 'Si_Te': 'ISTJ', 'Te_Si': 'ESTJ', 'Fi_Se': 'ISFP', 'Se_Fi': 'ESFP', 'Si_Fe': 'ISFJ', 'Fe_Si': 'ESFJ'}
+    je = {'Te', 'Fe'}
+    ji = {'Ti', 'Fi'}
+    pe = {'Ne', 'Se'}
+    pi = ['Ni', 'Si']
 
     def __init__(self):
         self.type = 'XXXX'
@@ -22,9 +26,30 @@ class Test():
     
     def getResults(self):
         dom = max(self.punteggi.items(), key=operator.itemgetter(1))[0]
-        _punteggi = self.punteggi
-        del _punteggi[dom]
-        aux = max(_punteggi.items(), key=operator.itemgetter(1))[0]
+        if dom in self.je:
+            aux_value= max((self.punteggi['Ni'], self.punteggi['Si']))
+            if self.punteggi['Ni'] == aux_value:
+                aux = 'Ni'
+            else:
+                aux = 'Si'
+        elif dom in self.ji:
+            aux_value = max((self.punteggi['Ne'], self.punteggi['Se']))
+            if self.punteggi['Ni'] == aux_value:
+                aux = 'Ne'
+            else:
+                aux = 'Se'
+        elif dom in self.pi:
+            aux_value = max((self.punteggi['Te'], self.punteggi['Fe']))
+            if self.punteggi['Te'] == aux_value:
+                aux = 'Te'
+            else:
+                aux = 'Fe'
+        elif dom in self.pe:
+            aux_value = max((self.punteggi['Ti'], self.punteggi['Fi']))
+            if self.punteggi['Ti'] == aux_value:
+                aux = 'Ti'
+            else:
+                aux = 'Fi'
         funcs = dom + '_' + aux
         self.type = self.types[funcs]
         return self.type
