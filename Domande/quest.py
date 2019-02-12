@@ -32,6 +32,7 @@ class Domande():
                 for q in _domande:
                     self.domande.append( {'func': f, 'quest': q} )
                     print(q)
+                shuffle(self.domande)
             except:
                 print('Errore')
                 sys.exit()
