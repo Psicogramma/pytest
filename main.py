@@ -26,14 +26,13 @@ def results():
     count = 0
     for f in forms:
         if count < len(d.domande):
-            if f and (forms[f] in valori_accettati): # Se ha messo la risposta
-                print(d.domande[count]['func'])
-                test.calcolaPunteggi(func=d.domande[count]['func'], value=forms[f])
+            if f and (forms[f] in valori_accettati): # Se ha messo la risposta ed è un numero da 1 a 4
+                test.calcolaPunteggi(func=d.domande[count]['func'], value=forms[f]) # (vedi CalcoloPunteggi/punteggi.py per dettagli funzione)
         count += 1
-    to_print = []
+    to_print = [] # Preparo la stringa da stampare
+    tipo = test.getResults()
     for punt in test.punteggi:
-        print(punt + ' ' + str(test.punteggi[punt]))
-        to_print.append(punt + ': ' + str(test.punteggi[punt]))
-    return render_template('results.html', to_print=to_print)
+        to_print.append(punt + ': ' + str(test.punteggi[punt])) # Aggiungo all'array da stampare    funzione: punteggio
+    return render_template('results.html', to_print=to_print, tipo=tipo)
 
 app.run()

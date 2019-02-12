@@ -12,8 +12,6 @@ class Domande():
     questions_rel_path = 'questions.txt'
     _domande_rel_path = '_domande.txt'
 
-    # Directory assolute
-
     funzioni = ('Si', 'Se', 'Ni', 'Ne', 'Ti', 'Te', 'Fi', 'Fe')
     domande = []
     n_domande = 32
