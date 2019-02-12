@@ -16,11 +16,15 @@
 			           
                     {% for d in domande %}
                         {{loop.index|string + ')'}} {{d}} <br>
-						
+						<label for="1">1</label>
                         <input type="radio" name="d{{loop.index}}" value="1"> 
+                        <label for="2">2</label>
                         <input type="radio" name="d{{loop.index}}" value="2"> 
+                        <label for="3">3</label>
                         <input type="radio" name="d{{loop.index}}" value="3">
-                        <input type="radio" name="d{{loop.index}}" value="4"> 
+                        <label for="4">4</label>
+                        <input type="radio" name="d{{loop.index}}" value="4">
+                        <label for="5">5</label> 
                         <input type="radio" name="d{{loop.index}}" value="5"> <br>
 					
                     {% endfor %}
