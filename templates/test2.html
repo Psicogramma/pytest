@@ -3,7 +3,7 @@
 {% block corpo %}
 <div class="body-test">
 
-        <form name="myForm" action='/result' method="post" onsubmit="return checkForm()">
+        <form name="myForm" action='/results' method="post" onsubmit="return checkForm()">
             {% for d in domande %}
             <div class="domanda"><br><br>
                 {{loop.index|string + '.'}} {{d}} <br><br>

@@ -31,9 +31,20 @@ class Test():
             pos2 = 'aux'
         else:
             pos2 = 'dom'
-        self.posizione[ func[pos] ] += self.incrementi[int(value)]
-        self.posizione[ func[pos2] ] += self.correzioni_opposta[int(value)]
+        self.posizione[ func ][pos] += self.incrementi[int(value)]
+        self.posizione[ func ][pos2] += self.correzioni_opposta[int(value)]
 
+    def topFunz(self, domande):
+        _d = []
+        _punteggi = self.punteggi
+        for i in range(0,3):
+            funz =  max(_punteggi.items(), key=operator.itemgetter(1))[0]
+            for d in domande:
+                if d['func'] == funz:
+                    _d.append(d)        
+            del _punteggi[funz]
+        self.top_3 = _d
+        return _d
     
     def getResults(self):
         dom = max(self.punteggi.items(), key=operator.itemgetter(1))[0]

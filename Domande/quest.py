@@ -18,6 +18,10 @@ class Domande():
     n_domande = 32
     ck = 0
 
+    dom_test1 = []
+    dom = []
+    dom_DomAux = []
+
     def __init__(self, script_dir):
 
         #nuovo_path = os.path.join(script_dir, self.nuovo_rel_path)
@@ -39,8 +43,25 @@ class Domande():
                 print('Errore')
                 sys.exit()
         
-        for f in self.funzioni:        
-            try:
+        for f in self.funzioni:
+            file_rel_dom = 'Domande/fase2/' + f + '_dom_domande.txt'
+            file_rel_aux = 'Domande/fase2/' + f + '_aux_domande.txt'
+            print(script_dir)
+            print(file_rel_dom)
+            d_dom_dir = os.path.join(script_dir, file_rel_dom) 
+            d_aux_dir = os.path.join(script_dir, file_rel_aux)
+            dom_file = open(d_dom_dir, 'r')
+            aux_file = open(d_aux_dir, 'r')
+            _domande_dom = dom_file.read().splitlines()
+            _domande_aux = aux_file.read().splitlines()
+            for q in _domande_dom:
+                self.domande_DomAux.append( {'func': f, 'quest': q, 'pos': 'dom'} )
+            for q in _domande_aux:
+                self.domande_DomAux.append( {'func': f, 'quest': q, 'pos': 'aux'} )
+            shuffle(self.domande_DomAux)
+            dom_file.close()
+            aux_file.close()      
+        '''try:
                 dom_file = open(d_dom_dir, 'r')
                 aux_file = open(d_aux_dir, 'r')
                 _domande_dom = dom_file.read().splitlines()
@@ -54,4 +75,4 @@ class Domande():
                 aux_file.close()
             except:
                 print('Errore')
-                sys.exit()
+                sys.exit()'''
