@@ -17,8 +17,12 @@ for dom in d.domande:
     domande.append(dom['quest'])
 
 @app.route('/')
+def home_page():
+    return render_template('homepage.html', title='Psicogramma - Home')
+
+@app.route('/test')
 def test_page():
-    return render_template('test.html', domande=domande)
+    return render_template('test.html', title='Test', domande=domande)
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():
@@ -33,6 +37,6 @@ def results():
     tipo = test.getResults()
     for punt in test.punteggi:
         to_print.append(punt + ': ' + str(test.punteggi[punt])) # Aggiungo all'array da stampare    funzione: punteggio
-    return render_template('results.html', to_print=to_print, tipo=tipo)
+    return render_template('results.html', title='Risultato', to_print=to_print, tipo=tipo)
 
 app.run()

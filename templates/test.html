@@ -1,36 +1,23 @@
-<html>
+{% extends "base.html"}
+{% block corpo %}
+    <div class="body-test">
 
-    <head>
-	
-        <script type="text/javascript" src="{{ url_for('static', filename = 'validazione.js') }}"></script>
-
-        <title>Test</title>
-        
-    </head>
-
-    <body>
-        {{domanda}}
-        
         <form name="myForm" action='/results' method="post" onsubmit="return checkForm()">
-            <ul>
-			           
-                    {% for d in domande %}
-                        {{loop.index|string + ')'}} {{d}} <br>
-						<label for="1">1</label>
-                        <input type="radio" name="d{{loop.index}}" value="1"> 
-                        <label for="2">2</label>
-                        <input type="radio" name="d{{loop.index}}" value="2"> 
-                        <label for="3">3</label>
-                        <input type="radio" name="d{{loop.index}}" value="3">
-                        <label for="4">4</label>
-                        <input type="radio" name="d{{loop.index}}" value="4">
-                        <label for="5">5</label> 
-                        <input type="radio" name="d{{loop.index}}" value="5"> <br><br>
-					
-                    {% endfor %}
-            </ul> 
+            {% for d in domande %}
+            <div class="domanda"><br><br>
+                {{loop.index|string + '.'}} {{d}} <br><br>
 
-            <input type="submit" name="next">                  
+                <input type="radio" name="d{{loop.index}}" value="1"> 1
+                <input type="radio" name="d{{loop.index}}" value="2"> 2
+                <input type="radio" name="d{{loop.index}}" value="3"> 3
+                <input type="radio" name="d{{loop.index}}" value="4"> 4
+                <input type="radio" name="d{{loop.index}}" value="5"> 5<br><br>
+
+            </div>
+            <hr width="90%"><br>
+            {% endfor %}
+
+            <input type="submit" name="next">
         </form>
-    </body>
-</html>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/validazione.js') }}"></script>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/barraNavigazione.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+        <title>{{title}}</title>
+    </head>
+    <body>
+        <nav class="main-nav">
+                <ul class="main-menu">
+                    <li class="menu-item"><a class="menu-link" href="/">home</a></li>
+                    <li class="menu-item"><a class="menu-link" href="/test">Test</a></li>
+                    <li class="menu-item"><a class="menu-link" href="#">mondo</a></li>
+                    <li class="menu-item"><a class="menu-link" href="#">politica</a></li>
+                    <li class="menu-item"><a class="menu-link" href="#">economia</a></li>
+                    <li class="menu-item"><a class="menu-link" href="#">tecnologia</a></li>
+                    <li class="menu-item"><a class="menu-link" href="#">cultura</a></li>
+                    <li class="menu-item"><a class="menu-link" href="#">sport</a></li>
+                    <li class="menu-item"><a class="menu-link" href="#">motori</a></li>
+                </ul>
+            </nav>
+        {% block corpo %}{% endblock %}
+    </body>
+</html>
