@@ -18,11 +18,22 @@ class Test():
     def __init__(self):
         self.type = 'XXXX'
         self.punteggi = {'Si': 0, 'Se': 0, 'Ni': 0, 'Ne': 0, 'Te': 0, 'Ti': 0, 'Fi': 0, 'Fe': 0}
+        self.posizione = { 'Si': {'dom': 0, 'aux': 0}, 'Se': {'dom': 0, 'aux': 0}, 'Ni': {'dom': 0, 'aux': 0}, 'Ne': {'dom': 0, 'aux': 0},
+                           'Ti': {'dom': 0, 'aux': 0}, 'Te': {'dom': 0, 'aux': 0}, 'Fi': {'dom': 0, 'aux': 0}, 'Fe': {'dom': 0, 'aux': 0} }
     
     def calcolaPunteggi(self, func, value):
         self.punteggi[func] += self.incrementi[int(value)]
         self.punteggi[ self.opposte[func] ] += self.correzioni_opposta[int(value)] # Applico correzioni
         self.punteggi[ self.inverse[func] ] += self.correzioni_inversa[int(value)] # Applico correzioni
+    
+    def calcolaPosizione(self, func, value, pos):
+        if pos == 'dom':
+            pos2 = 'aux'
+        else:
+            pos2 = 'dom'
+        self.posizione[ func[pos] ] += self.incrementi[int(value)]
+        self.posizione[ func[pos2] ] += self.correzioni_opposta[int(value)]
+
     
     def getResults(self):
         dom = max(self.punteggi.items(), key=operator.itemgetter(1))[0]

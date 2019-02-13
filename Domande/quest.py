@@ -14,16 +14,17 @@ class Domande():
 
     funzioni = ('Si', 'Se', 'Ni', 'Ne', 'Ti', 'Te', 'Fi', 'Fe')
     domande = []
+    domande_DomAux = []
     n_domande = 32
     ck = 0
 
     def __init__(self, script_dir):
 
-        nuovo_path = os.path.join(script_dir, self.nuovo_rel_path)
-        questions_path = os.path.join(script_dir, self.questions_rel_path)
+        #nuovo_path = os.path.join(script_dir, self.nuovo_rel_path)
+        #questions_path = os.path.join(script_dir, self.questions_rel_path)
 
         for f in self.funzioni:
-            domande_rel_path = 'Domande/' + f + '_domande.txt'
+            domande_rel_path = 'Domande/fase1/' + f + '_domande.txt'
             d_dir = os.path.join(script_dir, domande_rel_path)
             print(d_dir)
             try:
@@ -33,8 +34,24 @@ class Domande():
                     self.domande.append( {'func': f, 'quest': q} )
                     print(q)
                 shuffle(self.domande)
+                dfile.close()
             except:
                 print('Errore')
                 sys.exit()
-
         
+        for f in self.funzioni:        
+            try:
+                dom_file = open(d_dom_dir, 'r')
+                aux_file = open(d_aux_dir, 'r')
+                _domande_dom = dom_file.read().splitlines()
+                _domande_aux = aux_file.read().splitlines()
+                for q in _domande_dom:
+                    self.domande_DomAux.append( {'func': f, 'quest': q, 'pos': 'dom'} )
+                for q in _domande_aux:
+                    self.domande_DomAux.append( {'func': f, 'quest': q, 'pos': 'aux'} )
+                shuffle(self.domande_DomAux)
+                dom_file.close()
+                aux_file.close()
+            except:
+                print('Errore')
+                sys.exit()

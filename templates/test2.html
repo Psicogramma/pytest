@@ -1,14 +1,9 @@
-{% extends "base.html"%}
-
-{% block extend_head %}
-    <script type="text/javascript" src="{{ url_for('static', filename = 'js/validazione.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-{% endblock %}
+{% extends "base.html" %}
 
 {% block corpo %}
-    <div class="body-test">
+<div class="body-test">
 
-        <form name="myForm" action='/test2' method="post" onsubmit="return checkForm()">
+        <form name="myForm" action='/result' method="post" onsubmit="return checkForm()">
             {% for d in domande %}
             <div class="domanda"><br><br>
                 {{loop.index|string + '.'}} {{d}} <br><br>
