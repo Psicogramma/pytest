@@ -24,6 +24,10 @@ def home_page():
 def test_page():
     return render_template('test.html', title='Test', domande=testi)
 
+@app.route('/admin/test')
+def admin_page():
+    return render_template('test_admin.html', title='Test', domande=testi)
+
 @app.route('/test2', methods=['GET', 'POST'])
 def test2_page():
     forms = request.form    # Legge tutti i forms (dizionario)
@@ -42,12 +46,17 @@ def test2_page():
 @app.route('/results', methods=['GET', 'POST'])
 def results():
     forms = request.form    # Legge tutti i forms (dizionario)
+    print(forms)
     count = 0
     for f in forms:
         if count < len(test.top_3):
             if f and (forms[f] in valori_accettati): # Se ha messo la risposta ed è un numero da 1 a 5
-                test.calcolaPosizione(func=test.top_3[count]['func'], value=f, pos=test.top_3[count]['pos'])
+                test.calcolaPosizione(func=test.top_3[count]['func'], value=forms[f], pos=test.top_3[count]['pos'])
         count += 1
-    return render_template('results.html', title='Risultato', to_print=test.posizione, tipo="INTP")
+    to_print = []
+    for f in test.posizione:
+        to_print.append(test.posizione[f])
+
+    return render_template('results.html', title='Risultato', to_print=to_print, func=test.posizione, tipo="INTP")
 
 app.run()

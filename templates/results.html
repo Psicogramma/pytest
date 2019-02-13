@@ -4,8 +4,8 @@
     </head>
     <body>
         Risultati <br>
-        {% for f in to_print %}
-            {{f}} <br>
+        {% for f in func %}
+            {{f}} {{' '}} {{to_print[loop.index-1]}}<br>
         {% endfor %}
         <br>
         {{'Potresti probabilmente essere: '}} {{tipo}}

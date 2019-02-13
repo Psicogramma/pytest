@@ -1,0 +1,23 @@
+{% extends "base.html"%}
+
+{% block corpo %}
+    <div class="body-test">
+
+        <form name="myForm" action='/test2' method="post" onsubmit="return checkForm()">
+            {% for d in domande %}
+            <div class="domanda"><br><br>
+                {{loop.index|string + '.'}} {{d}} <br><br>
+
+                <input type="radio" name="d{{loop.index}}" value="1"> 1
+                <input type="radio" name="d{{loop.index}}" value="2"> 2
+                <input type="radio" name="d{{loop.index}}" value="3"> 3
+                <input type="radio" name="d{{loop.index}}" value="4"> 4
+                <input type="radio" name="d{{loop.index}}" value="5"> 5<br><br>
+            </div>
+            <hr width="90%"><br>
+            {% endfor %}
+
+            <input type="submit" name="next">
+        </form>
+    </div>
+{% endblock %}
