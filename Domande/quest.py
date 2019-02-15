@@ -55,39 +55,42 @@ class Domande():
             print('Errore')
             sys.exit()
         
-              
-        try:
-            mixed_rel_dir = 'Domande/fase2/mixed.txt'
-            mixed_dir = os.path.join(script_dir, mixed_rel_dir)
-            if os.path.isfile(mixed_dir):
-                mixed_file = open(mixed_dir, 'r')
-                read = mixed_file.read().splitlines()
+        # Parte 2 del test
+        #try:
+        mixed_relative_directory = 'Domande/fase2/mixed_fase2.txt'
+        mixed_absolute_directory = os.path.join(script_dir, mixed_relative_directory)
+        if os.path.isfile(mixed_absolute_directory):
+            mixed_file = open(mixed_absolute_directory, 'r')
+            read = mixed_file.read().splitlines()
+            for domanda in read:
+                words = domanda.split()
+                self.domande_DomAux.append({'dom_aux': words[0], 'func': domanda[:2], 'question': domanda[:]})
+            mixed_file.close()
+            print(self.domande_DomAux)
+        else:
+            # Creazione File Domande (sono pigro)
+            '''for f in self.funzioni:
+                funzione_relative_directory = 'Domande/fase2/' + f + 'domande.txt'
+                funzione_absolute_directory = os.path.join(script_dir, funzione_relative_directory)
+                funzione_file = open(funzione_absolute_directory, 'w')
+                funzione_file.write(f + ' Domanda' + '\n' + f + ' Domanda\n')
+                funzione_file.close()'''
+            _domande = []
+            mixed_file = open(mixed_absolute_directory, 'w')
+            for f in self.funzioni:
+                funzione_relative_directory = 'Domande/fase2/' + f + 'domande.txt'
+                funzione_absolute_directory = os.path.join(script_dir, funzione_relative_directory)
+                funzione_file = open(funzione_absolute_directory, 'r')
+                read = funzione_file.read().splitlines()
                 for domanda in read:
                     words = domanda.split()
-                    print(words[0] + words[1] + domanda[7:])
-                    self.domande_DomAux.append( {'func': words[0], 'pos': words[1], 'quest': domanda[7:]})
-            else:
-                for f in self.funzioni:
-                    file_rel_dom = 'Domande/fase2/' + f + '_dom_domande.txt'
-                    file_rel_aux = 'Domande/fase2/' + f + '_aux_domande.txt'
-                    d_dom_dir = os.path.join(script_dir, file_rel_dom) 
-                    d_aux_dir = os.path.join(script_dir, file_rel_aux)
-                    dom_file = open(d_dom_dir, 'r')
-                    aux_file = open(d_aux_dir, 'r')
-                    _domande_dom = dom_file.read().splitlines()
-                    _domande_aux = aux_file.read().splitlines()
-                    for q in _domande_dom:
-                        self.domande_DomAux.append( {'func': f, 'quest': q, 'pos': 'dom'} )
-                    for q in _domande_aux:
-                        self.domande_DomAux.append( {'func': f, 'quest': q, 'pos': 'aux'} )
-                    dom_file.close()
-                    aux_file.close()
-                shuffle(self.domande_DomAux)                
-                mixed_file = open(mixed_dir, 'w')
-                for quest in self.domande_DomAux:
-                    mixed_file.write(quest['func'] + ' ' + quest['pos'] + ' ' + quest['quest'] + '\n')
-                mixed_file.close()
-
-        except:
+                    _domande.append({'func': words[0], 'question': domanda[:]}) 
+                funzione_file.close()
+                shuffle(_domande)
+            mixed_file = open(mixed_absolute_directory, 'w')
+            for domanda in _domande:
+                mixed_file.write(domanda['func'] + ' ' + domanda['question'] + '\n')
+            mixed_file.close()
+        '''except:
             print('Errore')
-            sys.exit()
+            sys.exit()'''

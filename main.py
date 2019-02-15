@@ -36,15 +36,15 @@ def test2_page():
     count = 0
     for f in forms:
         if f and (forms[f] in valori_accettati): # Se ha messo la risposta ed è un numero da 1 a 5
-            print(d.domande[count]['func'])
-            print(forms[f])
             test.calcolaPunteggi(func=d.domande[count]['func'], value=forms[f]) # (vedi CalcoloPunteggi/punteggi.py per dettagli funzione)
         count += 1
     print(test.punteggi)
+    print(d.domande_DomAux)
     test.topFunz(domande=d.domande_DomAux) # Cerco le 3 funzioni più alte
     testi_DomAux = [] # Preparo la stringa da stampare
+    print(test.top_3)
     for f in test.top_3:
-        testi_DomAux.append(f['quest']) # Carico solo i testi
+        testi_DomAux.append(f['question']) # Carico solo i testi
     return render_template('test2.html', title='Test', domande=testi_DomAux)
 
 @app.route('/results', methods=['GET', 'POST'])
