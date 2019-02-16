@@ -61,5 +61,5 @@ def results():
     test.getResults()
 
     return render_template('results.html', title='Risultato', to_print=to_print, func=test.posizione, tipo=test.type)
-
-app.run()
+port = int(os.environ.get('PORT',5000))
+app.run(host='0.0.0.0', port=port)
